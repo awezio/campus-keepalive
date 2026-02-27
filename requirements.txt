@@ -1,0 +1,17 @@
+# Campus Network Keep-Alive Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+requests>=2.31.0       # HTTP requests for network checking and login
+
+# System Tray & UI
+pystray>=0.19.5        # System tray icon
+Pillow>=10.0.0         # Icon rendering (pystray dependency)
+winotify>=1.1.0        # Windows toast notifications
+
+# Configuration & Security
+PyYAML>=6.0            # Config file parsing
+cryptography>=41.0.0   # Password encryption (AES)
+
+# Development / Packaging
+pyinstaller>=6.0       # EXE packaging (only needed for building)

@@ -1,0 +1,269 @@
+2026-02-28 00:11:15 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:15 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:11:16 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:16 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:11:28 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:28 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:11:29 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:29 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:11:45 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:45 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:11:48 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:48 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:11:53 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:53 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:11:54 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:11:54 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:17:31 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:17:31 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:17:32 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:17:32 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:17:36 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:17:36 | WARNING  | keepalive | 判断登录页时出错: 'ParseResult' object has no attribute 'host'
+2026-02-28 00:17:36 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:17:36 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:10 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:18:35 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:18:38 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:18:41 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:41 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:55 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:55 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:58 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:18:58 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:19:24 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:19:54 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:19:54 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:20:19 | INFO     | keepalive | 开始检测校园网登录页...
+2026-02-28 00:20:49 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:20:49 | INFO     | keepalive | 网络正常，不需要登录
+2026-02-28 00:22:15 | WARNING  | keepalive | Configuration incomplete
+2026-02-28 00:25:26 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:25:26 | WARNING  | keepalive | Missing required fields: ['login_url', 'username', 'password']
+2026-02-28 00:25:28 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:25:28 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:25:34 | WARNING  | keepalive | Configuration incomplete
+2026-02-28 00:34:39 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:34:39 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:39 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:34:39 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:39 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:34:39 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:34:44 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:34:44 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:44 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:34:44 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:44 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:34:44 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:34:57 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:34:57 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:57 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:34:57 | INFO     | keepalive | ============================================================
+2026-02-28 00:34:57 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:34:57 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:40:02 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:40:02 | INFO     | keepalive | ============================================================
+2026-02-28 00:40:02 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:40:02 | INFO     | keepalive | ============================================================
+2026-02-28 00:40:02 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:40:02 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:40:02 | INFO     | keepalive | Checking initial network status...
+2026-02-28 00:40:02 | INFO     | keepalive | Network is online
+2026-02-28 00:40:02 | INFO     | keepalive | Heartbeat service started (interval: 600s)
+2026-02-28 00:40:02 | INFO     | keepalive | Service started successfully
+2026-02-28 00:40:02 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 00:40:02 | INFO     | keepalive | Starting tray icon...
+2026-02-28 00:40:02 | INFO     | keepalive | Heartbeat OK: [baidu] OK (117ms)
+2026-02-28 00:40:11 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:40:11 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:40:11 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:40:25 | INFO     | keepalive | Tray: Reconnect clicked
+2026-02-28 00:40:32 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:40:32 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:40:32 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:41:00 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:41:00 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:41:00 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 00:42:01 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 00:42:01 | INFO     | keepalive | Stopping service...
+2026-02-28 00:42:01 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 00:42:01 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 00:42:01 | INFO     | keepalive | ============================================================
+2026-02-28 00:42:01 | INFO     | keepalive | Service Statistics:
+2026-02-28 00:42:01 | INFO     | keepalive |   运行时长: 0.0 小时
+2026-02-28 00:42:01 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 00:42:01 | INFO     | keepalive |   成功次数: 1
+2026-02-28 00:42:01 | INFO     | keepalive |   失败次数: 0
+2026-02-28 00:42:01 | INFO     | keepalive | ============================================================
+2026-02-28 00:42:01 | INFO     | keepalive | Service stopped
+2026-02-28 00:44:42 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:44:42 | INFO     | keepalive | ============================================================
+2026-02-28 00:44:42 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:44:42 | INFO     | keepalive | ============================================================
+2026-02-28 00:44:42 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:44:42 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:44:42 | INFO     | keepalive | Checking initial network status...
+2026-02-28 00:44:42 | INFO     | keepalive | Network is online
+2026-02-28 00:44:42 | INFO     | keepalive | Heartbeat service started (interval: 600s)
+2026-02-28 00:44:42 | INFO     | keepalive | Service started successfully
+2026-02-28 00:44:42 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 00:44:42 | INFO     | keepalive | Starting tray icon...
+2026-02-28 00:44:43 | INFO     | keepalive | Heartbeat OK: [baidu] OK (145ms)
+2026-02-28 00:44:47 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:44:47 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:44:51 | INFO     | keepalive | Tray: Show log clicked
+2026-02-28 00:44:57 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:44:57 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:45:02 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:45:02 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:45:06 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:45:06 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:45:07 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 00:45:07 | INFO     | keepalive | Stopping service...
+2026-02-28 00:45:07 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 00:45:07 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 00:45:07 | INFO     | keepalive | ============================================================
+2026-02-28 00:45:07 | INFO     | keepalive | Service Statistics:
+2026-02-28 00:45:07 | INFO     | keepalive |   运行时长: 0.0 小时
+2026-02-28 00:45:07 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 00:45:07 | INFO     | keepalive |   成功次数: 1
+2026-02-28 00:45:07 | INFO     | keepalive |   失败次数: 0
+2026-02-28 00:45:07 | INFO     | keepalive | ============================================================
+2026-02-28 00:45:07 | INFO     | keepalive | Service stopped
+2026-02-28 00:48:17 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:48:17 | INFO     | keepalive | ============================================================
+2026-02-28 00:48:17 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:48:17 | INFO     | keepalive | ============================================================
+2026-02-28 00:48:17 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:48:17 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:48:17 | INFO     | keepalive | Checking initial network status...
+2026-02-28 00:48:17 | INFO     | keepalive | Network is online
+2026-02-28 00:48:17 | INFO     | keepalive | Heartbeat service started (interval: 600s)
+2026-02-28 00:48:17 | INFO     | keepalive | Service started successfully
+2026-02-28 00:48:17 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 00:48:17 | INFO     | keepalive | Starting tray icon...
+2026-02-28 00:48:17 | INFO     | keepalive | Heartbeat OK: [baidu] OK (116ms)
+2026-02-28 00:48:21 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:48:21 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:48:28 | INFO     | keepalive | Tray: Pause clicked
+2026-02-28 00:48:28 | INFO     | keepalive | Heartbeat paused
+2026-02-28 00:48:28 | INFO     | keepalive | Keep-alive paused
+2026-02-28 00:48:30 | INFO     | keepalive | Tray: Resume clicked
+2026-02-28 00:48:30 | INFO     | keepalive | Heartbeat resumed
+2026-02-28 00:48:30 | INFO     | keepalive | Keep-alive resumed
+2026-02-28 00:48:36 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:48:36 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:48:41 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:48:41 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:49:59 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 00:49:59 | INFO     | keepalive | Stopping service...
+2026-02-28 00:49:59 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 00:49:59 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 00:49:59 | INFO     | keepalive | ============================================================
+2026-02-28 00:49:59 | INFO     | keepalive | Service Statistics:
+2026-02-28 00:49:59 | INFO     | keepalive |   运行时长: 0.0 小时
+2026-02-28 00:49:59 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 00:49:59 | INFO     | keepalive |   成功次数: 1
+2026-02-28 00:49:59 | INFO     | keepalive |   失败次数: 0
+2026-02-28 00:49:59 | INFO     | keepalive | ============================================================
+2026-02-28 00:49:59 | INFO     | keepalive | Service stopped
+2026-02-28 00:51:38 | INFO     | keepalive | Config file not found, using defaults: D:\keep online\dist\config.yaml
+2026-02-28 00:51:38 | INFO     | keepalive | ============================================================
+2026-02-28 00:51:38 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 00:51:38 | INFO     | keepalive | ============================================================
+2026-02-28 00:51:38 | INFO     | keepalive | 心跳间隔: 600秒 (10 分钟)
+2026-02-28 00:51:38 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 00:51:38 | INFO     | keepalive | Checking initial network status...
+2026-02-28 00:51:38 | INFO     | keepalive | Network is online
+2026-02-28 00:51:38 | INFO     | keepalive | Heartbeat service started (interval: 600s)
+2026-02-28 00:51:38 | INFO     | keepalive | Service started successfully
+2026-02-28 00:51:38 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 00:51:38 | INFO     | keepalive | Starting tray icon...
+2026-02-28 00:51:38 | INFO     | keepalive | Heartbeat OK: [baidu] OK (116ms)
+2026-02-28 00:51:42 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:51:42 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:51:45 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:51:45 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:51:50 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 00:51:50 | ERROR    | keepalive | Failed to show config dialog: No module named 'config_gui_simple'
+2026-02-28 00:51:53 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 00:51:53 | INFO     | keepalive | Stopping service...
+2026-02-28 00:51:53 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 00:51:53 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 00:51:53 | INFO     | keepalive | ============================================================
+2026-02-28 00:51:53 | INFO     | keepalive | Service Statistics:
+2026-02-28 00:51:53 | INFO     | keepalive |   运行时长: 0.0 小时
+2026-02-28 00:51:53 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 00:51:53 | INFO     | keepalive |   成功次数: 1
+2026-02-28 00:51:53 | INFO     | keepalive |   失败次数: 0
+2026-02-28 00:51:53 | INFO     | keepalive | ============================================================
+2026-02-28 00:51:53 | INFO     | keepalive | Service stopped
+2026-02-28 01:07:43 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:08:48 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:10:22 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:11:52 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:12:29 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:12:29 | INFO     | keepalive | ============================================================
+2026-02-28 01:12:29 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 01:12:29 | INFO     | keepalive | ============================================================
+2026-02-28 01:12:29 | INFO     | keepalive | 心跳间隔: 3600秒 (60 分钟)
+2026-02-28 01:12:29 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 01:12:29 | INFO     | keepalive | Checking initial network status...
+2026-02-28 01:12:29 | INFO     | keepalive | Network is online
+2026-02-28 01:12:29 | INFO     | keepalive | Heartbeat service started (interval: 3600s)
+2026-02-28 01:12:29 | INFO     | keepalive | Service started successfully
+2026-02-28 01:12:29 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 01:12:29 | INFO     | keepalive | Starting tray icon...
+2026-02-28 01:12:29 | INFO     | keepalive | Heartbeat OK: [baidu] OK (119ms)
+2026-02-28 01:12:34 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 01:12:34 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:12:34 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 01:12:55 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 01:12:55 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:12:55 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 01:14:54 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 01:14:54 | INFO     | keepalive | Stopping service...
+2026-02-28 01:14:54 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 01:14:54 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 01:14:54 | INFO     | keepalive | ============================================================
+2026-02-28 01:14:54 | INFO     | keepalive | Service Statistics:
+2026-02-28 01:14:54 | INFO     | keepalive |   运行时长: 0.0 小时
+2026-02-28 01:14:54 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 01:14:54 | INFO     | keepalive |   成功次数: 1
+2026-02-28 01:14:54 | INFO     | keepalive |   失败次数: 0
+2026-02-28 01:14:54 | INFO     | keepalive | ============================================================
+2026-02-28 01:14:54 | INFO     | keepalive | Service stopped
+2026-02-28 01:14:58 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 01:15:24 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:16:20 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:16:20 | INFO     | keepalive | ============================================================
+2026-02-28 01:16:20 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-02-28 01:16:20 | INFO     | keepalive | ============================================================
+2026-02-28 01:16:20 | INFO     | keepalive | 心跳间隔: 3600秒 (60 分钟)
+2026-02-28 01:16:20 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-02-28 01:16:20 | INFO     | keepalive | Checking initial network status...
+2026-02-28 01:16:20 | INFO     | keepalive | Network is online
+2026-02-28 01:16:20 | INFO     | keepalive | Heartbeat service started (interval: 3600s)
+2026-02-28 01:16:20 | INFO     | keepalive | Service started successfully
+2026-02-28 01:16:20 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-02-28 01:16:20 | INFO     | keepalive | Starting tray icon...
+2026-02-28 01:16:21 | INFO     | keepalive | Heartbeat OK: [baidu] OK (139ms)
+2026-02-28 01:16:24 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 01:16:24 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:16:24 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 01:17:06 | INFO     | keepalive | Tray: Config clicked
+2026-02-28 01:17:06 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-02-28 01:17:06 | INFO     | keepalive | 配置已加载到界面
+2026-02-28 01:22:11 | INFO     | keepalive | Tray: Quit clicked
+2026-02-28 01:22:11 | INFO     | keepalive | Stopping service...
+2026-02-28 01:22:11 | INFO     | keepalive | Heartbeat service stopped
+2026-02-28 01:22:11 | INFO     | keepalive | Stopping tray icon...
+2026-02-28 01:22:11 | INFO     | keepalive | ============================================================
+2026-02-28 01:22:11 | INFO     | keepalive | Service Statistics:
+2026-02-28 01:22:11 | INFO     | keepalive |   运行时长: 0.1 小时
+2026-02-28 01:22:11 | INFO     | keepalive |   总心跳次数: 1
+2026-02-28 01:22:11 | INFO     | keepalive |   成功次数: 1
+2026-02-28 01:22:11 | INFO     | keepalive |   失败次数: 0
+2026-02-28 01:22:11 | INFO     | keepalive | ============================================================
+2026-02-28 01:22:11 | INFO     | keepalive | Service stopped
+2026-02-28 01:23:22 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
