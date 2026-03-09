@@ -153,7 +153,9 @@ class PortalDetector:
             # 检查是否 204 No Content（miui_204 特性）
             elif response.status_code == 204:
                 return False, None
-
+        except Exception as e:
+            self.logger.warning(f"Error in _check_url for {url}: {e}")
+            return False, None
     def _is_login_page(self, url: str) -> bool:
         """
         判断 URL 是否是校园网登录页

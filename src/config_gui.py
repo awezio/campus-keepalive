@@ -42,7 +42,12 @@ class ConfigGUI:
             parent: 父窗口
             on_save: 配置保存后的回调函数
         """
-        self.window = parent or tk.Tk()
+        self.root_window = parent
+        if parent is None:
+            self.root_window = tk.Tk()
+            self.root_window.withdraw()
+        self.window = tk.Toplevel(self.root_window)
+        self.window.protocol("WM_DELETE_WINDOW", self._on_close)
         self.window.title("校园网保活 - 配置")
         self.window.geometry("600x500")
         self.window.resizable(False, False)
@@ -366,15 +371,22 @@ class ConfigGUI:
             if result.status == NetworkStatus.ONLINE:
                 messagebox.showinfo("测试结果", f"网络状态：在线 ✓\n\n{result.message}")
             elif result.status == NetworkStatus.OFFLINE:
-                messagebox.showwarning("测试结果", f"网络状态：离线（需要登录）\n\n{result.message}")
+                messagebox.showwarning(
+                    "测试结果", f"网络状态：离线（需要登录）\n\n{result.message}"
+                )
                 if result.redirect_url:
-                    messagebox.showinfo("登录页", f"检测到登录页：\n{result.redirect_url}")
+                    messagebox.showinfo(
+                        "登录页", f"检测到登录页：\n{result.redirect_url}"
+                    )
             else:
-                messagebox.showerror("测试结果", f"网络状态：{result.status.value}\n\n{result.message}")
+                messagebox.showerror(
+                    "测试结果", f"网络状态：{result.status.value}\n\n{result.message}"
+                )
 
         except Exception as e:
             self.logger.error(f"测试登录失败: {e}")
             import traceback
+
             traceback.print_exc()
             messagebox.showerror("错误", f"测试失败: {e}")
 
@@ -385,13 +397,45 @@ class ConfigGUI:
         else:
             self.password_entry.config(show="*")
 
+    def _on_close(self):
+        """窗口关闭事件处理"""
+        self.destroy()
+
     def show(self):
         """显示配置界面"""
-        self.window.mainloop()
+        # Make sure the window is visible and modal, following the pattern used in the
+        # simple implementation and tkinter best practices.
+        self.window.deiconify()
+        self.window.lift()
+        self.window.focus_force()
+        # Modal behavior: grab focus and wait until window is closed
+        try:
+            self.window.grab_set()
+            self.window.wait_window()
+        except Exception:
+            # If modal behavior cannot be established for any reason, fall back gracefully
+            # without crashing the application.
+            pass
 
     def destroy(self):
         """关闭窗口"""
-        self.window.destroy()
+        # Destroy the configuration window first
+        try:
+            if getattr(self, "window", None) is not None:
+                self.window.destroy()
+        finally:
+            # Also destroy the (potentially hidden) root window if it exists
+            root_wnd = getattr(self, "root_window", None)
+            if root_wnd is not None:
+                try:
+                    has_exists = False
+                    exists_method = getattr(root_wnd, "winfo_exists", None)
+                    if exists_method is not None:
+                        has_exists = bool(exists_method())
+                    if has_exists:
+                        root_wnd.destroy()
+                except Exception:
+                    pass
 
 
 def show_config_dialog(
