@@ -1,1 +1,26 @@
-.opencode
+# Oh-My-OpenCode
+.sisyphus/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Logs
+logs/
+*.log
+
+# Config (contains sensitive data)
+config.yaml
+*.key
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
