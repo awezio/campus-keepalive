@@ -1,47 +1,19 @@
-# Campus Network Keep-Alive 配置文件
-
 portal:
-  # 校园网登录页 URL（必填）
-  # 通常形如 http://10.x.x.x/eportal/ 或 http://portal.xxx.edu.cn/
-  login_url: "http://10.0.0.1/eportal/index.jsp"
-
-  # 你的校园网账号（通常是学号）
-  username: "your_student_id"
-
-  # 你的密码（首次运行后会自动加密保存）
-  password: "your_password"
-
-  # 如果登录页需要额外的表单字段，在这里添加
+  login_url: http://10.0.0.1/eportal/index.jsp
+  username: your_student_id
+  password: Z0FBQUFBQnBzM1B4ZW54aHNkNi1wUHU4b29VWlY0V3VQd2lxTVVvYVlUa052Q1ZSVGgwRm5HX1pfemZnOXZKMGFjVHdnNFBSaUZzUDdMa3djeHdCSFVJcU1LM1hBdlFVUmc9PQ==
+  password_encrypted: true
   extra_fields: {}
-    # service: ""
-    # queryString: ""
-
 keepalive:
-  # 心跳间隔（秒）
-  # 根据 16 天测试结果，3 小时内未断网，保守设置心跳间隔为 3600 秒（1 小时）
   interval_seconds: 3600
-
-  # 心跳检测目标 URL
   targets:
-    - "http://www.baidu.com"
-    - "http://connect.rom.miui.com/generate_204"
-
+  - http://www.baidu.com
+  - http://connect.rom.miui.com/generate_204
 auto_login:
-  # 是否启用自动重新登录
   enabled: true
-
-  # 登录失败时最大重试次数
   max_retries: 3
-
-  # 重试间隔（秒）
   retry_delay_seconds: 5
-
 logging:
-  # 日志级别: DEBUG, INFO, WARNING, ERROR
-  level: "INFO"
-
-  # 单个日志文件最大大小（MB）
+  level: INFO
   max_size_mb: 5
-
-  # 保留的历史日志文件数量
   backup_count: 3

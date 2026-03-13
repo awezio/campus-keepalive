@@ -2,11 +2,11 @@
 
 
 a = Analysis(
-    ['src\\keepalive_simple.py'],
+    ['src\\keepalive.py'],
     pathex=[],
     binaries=[],
     datas=[('assets', 'assets')],
-    hiddenimports=['pystray._win32', 'PIL._tkinter_finder', 'tkinter', 'tkinter.messagebox', 'tkinter.ttk', 'config_gui_simple'],
+    hiddenimports=['pystray._win32', 'PIL._tkinter_finder'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

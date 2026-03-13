@@ -313,3 +313,20 @@
 2026-02-28 23:37:16 | INFO     | keepalive |   失败次数: 0
 2026-02-28 23:37:16 | INFO     | keepalive | ============================================================
 2026-02-28 23:37:16 | INFO     | keepalive | Service stopped
+2026-03-13 10:11:47 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-03-13 10:11:47 | INFO     | keepalive | ============================================================
+2026-03-13 10:11:47 | INFO     | keepalive | Campus Network Keep-Alive Service Starting (Simple Version)
+2026-03-13 10:11:47 | INFO     | keepalive | ============================================================
+2026-03-13 10:11:47 | INFO     | keepalive | 心跳间隔: 3600秒 (60 分钟)
+2026-03-13 10:11:47 | INFO     | keepalive | 注意: 本版本不包含自动登录功能，请确保 Windows WiFi 自动登录已启用
+2026-03-13 10:11:47 | INFO     | keepalive | Checking initial network status...
+2026-03-13 10:11:47 | INFO     | keepalive | Network is online
+2026-03-13 10:11:47 | INFO     | keepalive | Heartbeat service started (interval: 3600s)
+2026-03-13 10:11:47 | INFO     | keepalive | Service started successfully
+2026-03-13 10:11:47 | INFO     | keepalive | 右键托盘图标可暂停/配置
+2026-03-13 10:11:47 | INFO     | keepalive | Starting tray icon...
+2026-03-13 10:11:48 | INFO     | keepalive | Heartbeat OK: [baidu] OK (117ms)
+2026-03-13 10:11:52 | INFO     | keepalive | Tray: Config clicked
+2026-03-13 10:11:52 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
+2026-03-13 10:11:52 | INFO     | keepalive | 配置已加载到界面
+2026-03-13 10:29:59 | INFO     | keepalive | Config loaded from D:\keep online\dist\config.yaml
