@@ -11,6 +11,12 @@ __pycache__/
 logs/
 *.log
 
+# Build outputs and backups
+build/
+dist/
+backup_*/
+*.spec.backup
+
 # Config (contains sensitive data)
 config.yaml
 *.key

@@ -5,9 +5,8 @@
 requests>=2.31.0       # HTTP requests for network checking and login
 
 # System Tray & UI
-pystray>=0.19.5        # System tray icon
-Pillow>=10.0.0         # Icon rendering (pystray dependency)
-winotify>=1.1.0        # Windows toast notifications
+PySide6>=6.7.0         # Desktop UI and system tray
+Pillow>=10.0.0         # Build-time icon generation
 
 # Configuration & Security
 PyYAML>=6.0            # Config file parsing

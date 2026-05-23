@@ -1,40 +1,34 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Network Checker Module
-网络状态检测模块
-
-功能:
-- 检测当前网络是否在线
-- 检测是否被校园网网关踢出（重定向到登录页）
-- 获取网关登录页 URL
-"""
+"""Network status detection for captive-portal campus networks."""
 
 import socket
+import time
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, Tuple, List
-import time
+from typing import List, Optional, Tuple
 
 try:
     import requests
 except ImportError:
-    raise ImportError("请安装 requests: pip install requests")
+    raise ImportError("Please install requests: pip install requests")
 
 from logger_setup import get_network_logger
 
 
 class NetworkStatus(Enum):
-    """网络状态枚举"""
-    ONLINE = "online"           # 正常联网
-    OFFLINE = "offline"         # 被网关踢出，需要重新登录
-    DISCONNECTED = "disconnected"  # 网络完全断开（WiFi 断开等）
-    ERROR = "error"             # 检测异常
+    """Network status values returned by NetworkChecker."""
+
+    ONLINE = "online"
+    OFFLINE = "offline"
+    DISCONNECTED = "disconnected"
+    ERROR = "error"
 
 
 @dataclass
 class CheckResult:
-    """网络检测结果"""
+    """Result from a single network check."""
+
     status: NetworkStatus
     response_code: int
     response_time_ms: float
@@ -43,223 +37,267 @@ class CheckResult:
 
 
 class NetworkChecker:
-    """网络状态检测器"""
-    
-    # 检测目标 URL（使用 HTTP，因为 HTTPS 无法被网关重定向）
+    """Detect internet access and captive-portal login redirects."""
+
+    WINDOWS_NCSI_URL = "http://www.msftconnecttest.com/connecttest.txt"
+    WINDOWS_NCSI_EXPECTED = "Microsoft Connect Test"
+
     DEFAULT_CHECK_URLS = [
-        ("http://www.baidu.com", "baidu"),
+        (WINDOWS_NCSI_URL, "windows_ncsi"),
         ("http://connect.rom.miui.com/generate_204", "miui_204"),
+        ("http://www.baidu.com", "baidu"),
         ("http://www.qq.com", "qq"),
-        ("http://www.taobao.com", "taobao"),
     ]
-    
-    # 登录页关键词（用于检测是否被重定向到网关登录页）
+
     LOGIN_KEYWORDS = [
-        'login', 'portal', 'auth', 'eportal', 'webauth',
-        '认证', '登录', '登陆', '校园网',
-        '10.', '192.168.', '172.16.', '172.17.', '172.18.', '172.19.',
-        '172.20.', '172.21.', '172.22.', '172.23.', '172.24.', '172.25.',
-        '172.26.', '172.27.', '172.28.', '172.29.', '172.30.', '172.31.',
+        "login",
+        "portal",
+        "auth",
+        "eportal",
+        "webauth",
+        "10.",
+        "192.168.",
+        "172.16.",
+        "172.17.",
+        "172.18.",
+        "172.19.",
+        "172.20.",
+        "172.21.",
+        "172.22.",
+        "172.23.",
+        "172.24.",
+        "172.25.",
+        "172.26.",
+        "172.27.",
+        "172.28.",
+        "172.29.",
+        "172.30.",
+        "172.31.",
     ]
-    
+
+    LOGIN_FORM_INDICATORS = [
+        'type="password"',
+        "name=\"password\"",
+        "name='password'",
+        "username",
+        "password",
+        "eportal",
+        "webauth",
+        "portal",
+        "login",
+    ]
+
     def __init__(
         self,
         check_urls: Optional[List[Tuple[str, str]]] = None,
-        timeout: int = 10,
-        login_keywords: Optional[List[str]] = None
+        timeout: int = 3,
+        login_keywords: Optional[List[str]] = None,
     ):
-        """
-        初始化网络检测器
-        
-        Args:
-            check_urls: 检测用的 URL 列表，格式 [(url, name), ...]
-            timeout: 请求超时时间（秒）
-            login_keywords: 自定义登录页关键词
-        """
         self.check_urls = check_urls or self.DEFAULT_CHECK_URLS
         self.timeout = timeout
         self.login_keywords = login_keywords or self.LOGIN_KEYWORDS
         self.logger = get_network_logger()
-        
-        # 复用 Session 以提高效率
+
         self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        })
-    
+        self.session.headers.update(
+            {
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/120.0.0.0 Safari/537.36"
+                )
+            }
+        )
+
     def _is_login_redirect(self, url: str) -> bool:
-        """检查 URL 是否是登录页重定向"""
         if not url:
             return False
         url_lower = url.lower()
-        return any(kw in url_lower for kw in self.login_keywords)
-    
-    def _check_single_url(self, url: str, name: str) -> CheckResult:
-        """
-        检测单个 URL 的网络状态
-        
-        Args:
-            url: 要检测的 URL
-            name: URL 的标识名
-        
-        Returns:
-            CheckResult 检测结果
-        """
-        start_time = time.time()
-        
+        return any(keyword in url_lower for keyword in self.login_keywords)
+
+    def _read_response_prefix(self, response, size: int = 1024) -> str:
+        content = b""
         try:
-            # 使用 HEAD 请求，减少流量消耗
-            response = self.session.head(
-                url,
-                timeout=self.timeout,
-                allow_redirects=False
+            raw = getattr(response, "raw", None)
+            if raw:
+                content = raw.read(size)
+            if not content and getattr(response, "content", b""):
+                content = response.content[:size]
+        except Exception:
+            content = b""
+
+        if isinstance(content, str):
+            return content[:size].lower()
+        return content.decode("utf-8", errors="ignore").lower()
+
+    def _looks_like_login_page(self, content: str) -> bool:
+        return any(indicator in content for indicator in self.LOGIN_FORM_INDICATORS)
+
+    def _result_from_response(self, url: str, name: str, response, start_time: float) -> CheckResult:
+        response_time = (time.time() - start_time) * 1000
+        status_code = response.status_code
+
+        if status_code in (301, 302, 303, 307, 308):
+            redirect_url = response.headers.get("Location", "")
+            if self._is_login_redirect(redirect_url):
+                return CheckResult(
+                    status=NetworkStatus.OFFLINE,
+                    response_code=status_code,
+                    response_time_ms=response_time,
+                    redirect_url=redirect_url,
+                    message=f"[{name}] Redirected to login portal",
+                )
+
+            return CheckResult(
+                status=NetworkStatus.ONLINE,
+                response_code=status_code,
+                response_time_ms=response_time,
+                redirect_url=redirect_url,
+                message=f"[{name}] Normal redirect",
             )
-            
-            response_time = (time.time() - start_time) * 1000
-            status_code = response.status_code
-            
-            # 检测重定向
-            if status_code in (301, 302, 303, 307, 308):
-                redirect_url = response.headers.get('Location', '')
-                
-                if self._is_login_redirect(redirect_url):
-                    return CheckResult(
-                        status=NetworkStatus.OFFLINE,
-                        response_code=status_code,
-                        response_time_ms=response_time,
-                        redirect_url=redirect_url,
-                        message=f"[{name}] Redirected to login portal"
-                    )
-                else:
-                    # 正常重定向（如 HTTP -> HTTPS）
-                    return CheckResult(
-                        status=NetworkStatus.ONLINE,
-                        response_code=status_code,
-                        response_time_ms=response_time,
-                        redirect_url=redirect_url,
-                        message=f"[{name}] Normal redirect"
-                    )
-            
-            elif status_code == 200:
+
+        if status_code == 200:
+            content = self._read_response_prefix(response)
+            if content and self._looks_like_login_page(content):
                 return CheckResult(
-                    status=NetworkStatus.ONLINE,
+                    status=NetworkStatus.OFFLINE,
                     response_code=status_code,
                     response_time_ms=response_time,
-                    message=f"[{name}] OK"
+                    redirect_url=url,
+                    message=f"[{name}] Login portal content",
                 )
-            
-            elif status_code == 204:
-                # generate_204 端点的正常响应
+
+            if (
+                url == self.WINDOWS_NCSI_URL
+                and content
+                and self.WINDOWS_NCSI_EXPECTED.lower() not in content
+            ):
                 return CheckResult(
-                    status=NetworkStatus.ONLINE,
+                    status=NetworkStatus.OFFLINE,
                     response_code=status_code,
                     response_time_ms=response_time,
-                    message=f"[{name}] No Content (expected)"
+                    redirect_url=url,
+                    message=f"[{name}] Captive portal response",
                 )
-            
-            else:
-                return CheckResult(
-                    status=NetworkStatus.ERROR,
-                    response_code=status_code,
-                    response_time_ms=response_time,
-                    message=f"[{name}] Unexpected status: {status_code}"
-                )
-        
+
+            return CheckResult(
+                status=NetworkStatus.ONLINE,
+                response_code=status_code,
+                response_time_ms=response_time,
+                message=f"[{name}] OK",
+            )
+
+        if status_code == 204:
+            return CheckResult(
+                status=NetworkStatus.ONLINE,
+                response_code=status_code,
+                response_time_ms=response_time,
+                message=f"[{name}] No Content (expected)",
+            )
+
+        return CheckResult(
+            status=NetworkStatus.ERROR,
+            response_code=status_code,
+            response_time_ms=response_time,
+            message=f"[{name}] Unexpected status: {status_code}",
+        )
+
+    def _request_url(self, method: str, url: str, name: str, start_time: float) -> CheckResult:
+        request = self.session.get if method == "GET" else self.session.head
+
+        try:
+            kwargs = {"timeout": self.timeout, "allow_redirects": False}
+            if method == "GET":
+                kwargs["stream"] = True
+            response = request(url, **kwargs)
+            return self._result_from_response(url, name, response, start_time)
+
         except requests.exceptions.Timeout:
             response_time = (time.time() - start_time) * 1000
             return CheckResult(
                 status=NetworkStatus.ERROR,
                 response_code=0,
                 response_time_ms=response_time,
-                message=f"[{name}] Timeout"
+                message=f"[{name}] Timeout",
             )
-        
+
         except requests.exceptions.ConnectionError:
             response_time = (time.time() - start_time) * 1000
             return CheckResult(
                 status=NetworkStatus.DISCONNECTED,
                 response_code=0,
                 response_time_ms=response_time,
-                message=f"[{name}] Connection failed"
+                message=f"[{name}] Connection failed",
             )
-        
-        except Exception as e:
+
+        except Exception as exc:
             response_time = (time.time() - start_time) * 1000
             return CheckResult(
                 status=NetworkStatus.ERROR,
                 response_code=0,
                 response_time_ms=response_time,
-                message=f"[{name}] Error: {str(e)[:50]}"
+                message=f"[{name}] Error: {str(exc)[:50]}",
             )
-    
+
+    def _check_single_url(self, url: str, name: str) -> CheckResult:
+        start_time = time.time()
+
+        if url == self.WINDOWS_NCSI_URL:
+            return self._request_url("GET", url, name, start_time)
+
+        # Try a lightweight HEAD first to be fast, but verify with GET when
+        # HEAD returns 200/ONLINE because some captive portals respond to GET
+        # with a login page while HEAD appears OK and would cause false-positives.
+        result = self._request_url("HEAD", url, name, start_time)
+        if result.status in (NetworkStatus.ERROR, NetworkStatus.DISCONNECTED):
+            return self._request_url("GET", url, name, start_time)
+
+        if result.status == NetworkStatus.ONLINE and result.response_code == 200:
+            # Verify content with GET to detect captive-portal pages that only
+            # appear on GET requests.
+            get_result = self._request_url("GET", url, name, start_time)
+            # Prefer the GET result if it indicates offline/portal, otherwise
+            # return the GET result to have accurate timings and content checks.
+            return get_result
+
+        return result
+
     def check(self) -> CheckResult:
-        """
-        检测当前网络状态
-        
-        依次尝试多个 URL，返回第一个确定的结果
-        
-        Returns:
-            CheckResult 检测结果
-        """
         last_result = None
-        
+
         for url, name in self.check_urls:
             result = self._check_single_url(url, name)
             last_result = result
-            
-            # 如果检测到在线或离线（确定性结果），直接返回
+
             if result.status in (NetworkStatus.ONLINE, NetworkStatus.OFFLINE):
                 self.logger.debug(f"Network check: {result.status.value} - {result.message}")
                 return result
-            
-            # 如果是网络断开，继续尝试（可能只是单个服务器问题）
-            # 如果是错误，也继续尝试
-        
-        # 所有 URL 都失败
+
         if last_result:
             last_result.message = f"All URLs failed. Last: {last_result.message}"
             self.logger.warning(f"Network check failed: {last_result.message}")
             return last_result
-        
+
         return CheckResult(
             status=NetworkStatus.ERROR,
             response_code=0,
             response_time_ms=0,
-            message="No URLs to check"
+            message="No URLs to check",
         )
-    
+
     def is_online(self) -> bool:
-        """快速检测是否在线"""
-        result = self.check()
-        return result.status == NetworkStatus.ONLINE
-    
+        return self.check().status == NetworkStatus.ONLINE
+
     def is_offline(self) -> bool:
-        """检测是否被网关踢出（需要重新登录）"""
-        result = self.check()
-        return result.status == NetworkStatus.OFFLINE
-    
+        return self.check().status == NetworkStatus.OFFLINE
+
     def get_gateway_url(self) -> Optional[str]:
-        """
-        获取网关登录页 URL
-        
-        Returns:
-            登录页 URL，如果在线则返回 None
-        """
         result = self.check()
         if result.status == NetworkStatus.OFFLINE:
             return result.redirect_url
         return None
-    
+
     def check_dns(self, hostname: str = "www.baidu.com") -> bool:
-        """
-        检测 DNS 解析是否正常
-        
-        Args:
-            hostname: 要解析的域名
-        
-        Returns:
-            DNS 解析是否成功
-        """
         try:
             socket.gethostbyname(hostname)
             return True
@@ -267,31 +305,24 @@ class NetworkChecker:
             return False
 
 
-# 全局实例
 _checker: Optional[NetworkChecker] = None
 
 
 def get_checker() -> NetworkChecker:
-    """获取全局 NetworkChecker 实例"""
     global _checker
     if _checker is None:
         _checker = NetworkChecker()
     return _checker
 
 
-if __name__ == '__main__':
-    # 测试
+if __name__ == "__main__":
     checker = NetworkChecker()
-    
-    print("正在检测网络状态...\n")
-    
     result = checker.check()
-    
-    print(f"状态: {result.status.value}")
-    print(f"响应码: {result.response_code}")
-    print(f"响应时间: {result.response_time_ms:.1f}ms")
-    print(f"重定向URL: {result.redirect_url or 'N/A'}")
-    print(f"信息: {result.message}")
-    
-    print(f"\n是否在线: {checker.is_online()}")
-    print(f"DNS解析: {'正常' if checker.check_dns() else '异常'}")
+
+    print(f"Status: {result.status.value}")
+    print(f"Code: {result.response_code}")
+    print(f"Time: {result.response_time_ms:.1f}ms")
+    print(f"Redirect: {result.redirect_url or 'N/A'}")
+    print(f"Message: {result.message}")
+    print(f"Online: {checker.is_online()}")
+    print(f"DNS: {'OK' if checker.check_dns() else 'FAILED'}")

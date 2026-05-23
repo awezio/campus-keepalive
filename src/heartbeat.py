@@ -73,6 +73,7 @@ class Heartbeat:
         
         self._running = False
         self._paused = False
+        self._run_immediately = True
         self._thread: Optional[threading.Thread] = None
         self._stop_event = threading.Event()
     
@@ -108,8 +109,11 @@ class Heartbeat:
         """心跳循环（在后台线程中运行）"""
         self.stats.start_time = time.time()
         self.logger.info(f"Heartbeat service started (interval: {self.interval}s)")
+
+        if not self._run_immediately:
+            self._stop_event.wait(timeout=self.interval)
         
-        while self._running:
+        while self._running and not self._stop_event.is_set():
             if not self._paused:
                 try:
                     self._do_heartbeat()
@@ -123,13 +127,14 @@ class Heartbeat:
         
         self.logger.info("Heartbeat service stopped")
     
-    def start(self):
+    def start(self, run_immediately: bool = True):
         """启动心跳服务（后台线程）"""
         if self._running:
             self.logger.warning("Heartbeat service already running")
             return
         
         self._running = True
+        self._run_immediately = run_immediately
         self._stop_event.clear()
         self._thread = threading.Thread(target=self._run_loop, daemon=True)
         self._thread.start()

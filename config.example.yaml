@@ -1,10 +1,20 @@
 # Campus Network Keep-Alive 配置文件
 # 请复制此文件为 config.yaml 并填写你的信息
 
+app:
+  # 运行模式: auto=自动判断, keepalive_only=仅保活, auto_login=强制自动登录
+  mode: "auto"
+
+  # 启动后是否最小化到托盘
+  start_minimized: false
+
+  # 是否显示系统通知
+  show_notifications: true
+
 portal:
   # 校园网登录页 URL（必填）
   # 通常形如 http://10.x.x.x/eportal/ 或 http://portal.xxx.edu.cn/
-  login_url: "http://10.0.0.1/eportal/index.jsp"
+  login_url: "http://192.168.2.135/eportal/success.jsp?"
   
   # 你的校园网账号（通常是学号）
   username: "your_student_id"
@@ -20,8 +30,8 @@ portal:
 keepalive:
   # 心跳间隔（秒）
   # 建议设置为校园网超时时间的 1/3
-  # 例如：超时 30 分钟 -> 间隔 600 秒（10 分钟）
-  interval_seconds: 600
+  # 例如：超时 30 分钟 -> 间隔 120 秒（2 分钟）
+  interval_seconds: 120
   
   # 心跳检测目标 URL
   targets:

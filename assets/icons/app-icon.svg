@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Campus KeepAlive">
+  <defs>
+    <linearGradient id="shield" x1="48" y1="24" x2="208" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1D9BF0"/>
+      <stop offset="1" stop-color="#1168C2"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="74" y1="42" x2="154" y2="136" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7DD3FC" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#7DD3FC" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M128 18 212 48v69c0 58-34 102-84 121-50-19-84-63-84-121V48l84-30Z" fill="url(#shield)"/>
+  <path d="M128 31 199 56v61c0 48-27 84-71 103-44-19-71-55-71-103V56l71-25Z" fill="none" stroke="#EAF6FF" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M83 62 128 47l45 15v56c0 35-16 62-45 78-29-16-45-43-45-78V62Z" fill="url(#shine)"/>
+  <path d="M82 106c25-22 67-22 92 0" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+  <path d="M104 132c13-12 35-12 48 0" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="128" cy="160" r="13" fill="#FFFFFF"/>
+</svg>

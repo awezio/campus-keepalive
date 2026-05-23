@@ -168,7 +168,7 @@ class PortalDetector:
         """
         try:
             parsed = urlparse(url)
-            host = parsed.host.lower()
+            host = (parsed.hostname or parsed.netloc or "").lower()
             path = parsed.path.lower()
 
             # 检查是否匹配已知的登录页 URL 模式

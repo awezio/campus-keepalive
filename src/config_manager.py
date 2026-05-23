@@ -37,11 +37,13 @@ from logger_setup import get_main_logger, get_base_dir
 BASE_DIR = get_base_dir()
 CONFIG_FILE = BASE_DIR / "config.yaml"
 KEY_FILE = BASE_DIR / ".key"  # 加密密钥文件（自动生成）
+DEFAULT_LOGIN_URL = "http://192.168.2.135/eportal/success.jsp?"
+LEGACY_DEFAULT_LOGIN_URL = "http://10.0.0.1/eportal/index.jsp"
 
 @dataclass
 class PortalConfig:
     """网关配置"""
-    login_url: str = ""
+    login_url: str = DEFAULT_LOGIN_URL
     username: str = ""
     password: str = ""  # 明文或加密后的密码
     password_encrypted: bool = False  # 标记密码是否已加密
@@ -51,7 +53,7 @@ class PortalConfig:
 @dataclass
 class KeepaliveConfig:
     """保活配置"""
-    interval_seconds: int = 600  # 心跳间隔（秒）
+    interval_seconds: int = 120  # 心跳间隔（秒）
     targets: list = field(default_factory=lambda: [
         "http://www.baidu.com",
         "http://connect.rom.miui.com/generate_204"
@@ -75,8 +77,17 @@ class LoggingConfig:
 
 
 @dataclass
+class AppSettings:
+    """应用级配置"""
+    mode: str = "auto"
+    start_minimized: bool = False
+    show_notifications: bool = True
+
+
+@dataclass
 class AppConfig:
     """完整应用配置"""
+    app: AppSettings = field(default_factory=AppSettings)
     portal: PortalConfig = field(default_factory=PortalConfig)
     keepalive: KeepaliveConfig = field(default_factory=KeepaliveConfig)
     auto_login: AutoLoginConfig = field(default_factory=AutoLoginConfig)
@@ -176,12 +187,25 @@ class ConfigManager:
         try:
             with open(self.config_path, 'r', encoding='utf-8') as f:
                 data = yaml.safe_load(f) or {}
+
+            # 解析 app 配置（旧配置没有该段，使用默认值）
+            if 'app' in data:
+                app = data['app']
+                config.app = AppSettings(
+                    mode=app.get('mode', 'auto'),
+                    start_minimized=app.get('start_minimized', False),
+                    show_notifications=app.get('show_notifications', True)
+                )
             
             # 解析 portal 配置
             if 'portal' in data:
                 portal = data['portal']
                 config.portal = PortalConfig(
-                    login_url=portal.get('login_url', ''),
+                    login_url=(
+                        DEFAULT_LOGIN_URL
+                        if (portal.get('login_url') or '').strip() in ('', LEGACY_DEFAULT_LOGIN_URL)
+                        else portal.get('login_url')
+                    ),
                     username=portal.get('username', ''),
                     password=portal.get('password', ''),
                     password_encrypted=portal.get('password_encrypted', False),
@@ -196,7 +220,7 @@ class ConfigManager:
             if 'keepalive' in data:
                 ka = data['keepalive']
                 config.keepalive = KeepaliveConfig(
-                    interval_seconds=ka.get('interval_seconds', 600),
+                    interval_seconds=ka.get('interval_seconds', 120),
                     targets=ka.get('targets', config.keepalive.targets)
                 )
             
@@ -242,6 +266,11 @@ class ConfigManager:
             password_encrypted = True
         
         data = {
+            'app': {
+                'mode': config.app.mode,
+                'start_minimized': config.app.start_minimized,
+                'show_notifications': config.app.show_notifications
+            },
             'portal': {
                 'login_url': config.portal.login_url,
                 'username': config.portal.username,
@@ -277,15 +306,25 @@ class ConfigManager:
     
     def create_example(self):
         """创建示例配置文件"""
-        example_path = CONFIG_DIR / "config.example.yaml"
+        example_path = self.config_path.parent / "config.example.yaml"
         
         example_content = """# Campus Network Keep-Alive 配置文件
 # 请复制此文件为 config.yaml 并填写你的信息
 
+app:
+  # 运行模式: auto=自动判断, keepalive_only=仅保活, auto_login=强制自动登录
+  mode: "auto"
+
+  # 启动后是否最小化到托盘
+  start_minimized: false
+
+  # 是否显示系统通知
+  show_notifications: true
+
 portal:
   # 校园网登录页 URL（必填）
   # 通常形如 http://10.x.x.x/eportal/ 或 http://portal.xxx.edu.cn/
-  login_url: "http://10.0.0.1/eportal/index.jsp"
+  login_url: "http://192.168.2.135/eportal/success.jsp?"
   
   # 你的校园网账号（通常是学号）
   username: "your_student_id"
@@ -301,8 +340,8 @@ portal:
 keepalive:
   # 心跳间隔（秒）
   # 建议设置为校园网超时时间的 1/3
-  # 例如：超时 30 分钟 -> 间隔 600 秒（10 分钟）
-  interval_seconds: 600
+  # 例如：超时 30 分钟 -> 间隔 120 秒（2 分钟）
+  interval_seconds: 120
   
   # 心跳检测目标 URL
   targets:

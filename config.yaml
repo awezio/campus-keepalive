@@ -1,11 +1,11 @@
 portal:
-  login_url: http://10.0.0.1/eportal/index.jsp
+  login_url: http://192.168.2.135/eportal/success.jsp?
   username: your_student_id
   password: Z0FBQUFBQnBzM1B4ZW54aHNkNi1wUHU4b29VWlY0V3VQd2lxTVVvYVlUa052Q1ZSVGgwRm5HX1pfemZnOXZKMGFjVHdnNFBSaUZzUDdMa3djeHdCSFVJcU1LM1hBdlFVUmc9PQ==
   password_encrypted: true
   extra_fields: {}
 keepalive:
-  interval_seconds: 3600
+  interval_seconds: 120
   targets:
   - http://www.baidu.com
   - http://connect.rom.miui.com/generate_204
